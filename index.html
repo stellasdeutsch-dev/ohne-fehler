@@ -477,6 +477,136 @@ section{position:relative;z-index:2}
 .comma--no .mk{color:var(--grey)}
 .comma--yes .mk{color:var(--gold-deep)}
 
+/* ============ RULE DEMOS ============ */
+.demo{
+  background:linear-gradient(180deg,#FCFDFE,#F3F8FC);
+  border:1px solid var(--line);border-radius:var(--r-m);
+  padding:16px 15px;margin-bottom:12px;
+}
+.demo__t{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:500;margin-bottom:13px;
+}
+.demo__t::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-deep);flex:0 0 auto}
+.demo__row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px}
+.dchip{
+  padding:8px 13px;border-radius:100px;border:1px solid var(--line);background:#fff;
+  font-size:13.5px;color:var(--ink-soft);transition:.25s;
+}
+.dchip:hover{border-color:var(--grey)}
+.dchip.on{background:var(--gold);border-color:var(--gold-deep);color:#6B5A28;font-weight:500;box-shadow:0 5px 13px rgba(226,193,105,.4)}
+
+/* --- sound wave --- */
+.wave{display:inline-flex;align-items:flex-end;gap:2px;height:15px;vertical-align:-2px}
+.wave i{width:3px;height:100%;background:var(--gold-deep);border-radius:2px;transform-origin:50% 100%;animation:wv 1.05s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.13s}
+.wave i:nth-child(3){animation-delay:.26s}
+.wave i:nth-child(4){animation-delay:.39s}
+@keyframes wv{0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.wave i{animation:none;transform:scaleY(.6)}}
+
+.snd__out{display:grid;gap:2px}
+.snd__row{
+  display:flex;align-items:center;gap:12px;padding:8px 0;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .5s cubic-bezier(.2,.8,.3,1),transform .5s cubic-bezier(.2,.8,.3,1);
+}
+.snd__row.on{opacity:1;transform:none}
+.tile{
+  flex:0 0 auto;min-width:70px;text-align:center;padding:7px 10px;border-radius:9px;
+  background:var(--gold-soft);border:1px solid var(--gold);
+  font-weight:500;color:#8A7233;font-size:15px;
+}
+.snd__row em{font-style:normal;color:var(--ink-faint);font-size:14.5px;line-height:1.4}
+.snd__row em b{display:block;color:#5A616B;font-weight:500;font-size:15.5px}
+.snd__note{margin-top:12px;font-size:13.5px;color:var(--ink-soft);line-height:1.55}
+.snd__note b{color:var(--ink)}
+
+/* --- case transformer --- */
+.case__line{
+  display:flex;align-items:baseline;justify-content:center;gap:.34em;
+  font-size:clamp(20px,5.6vw,28px);color:var(--ink);min-height:1.7em;
+}
+.case__line .pre{color:var(--ink-faint)}
+.cap{display:inline-block;color:var(--gold-deep);font-weight:500}
+.cap.pop{animation:capPop .65s cubic-bezier(.3,1.5,.5,1)}
+@keyframes capPop{0%{transform:scale(1) translateY(0)}40%{transform:scale(1.75) translateY(-.1em)}100%{transform:scale(1) translateY(0)}}
+.suf{display:inline-block;opacity:0;transform:translateY(-.5em);transition:opacity .4s .25s,transform .4s .25s}
+.suf.on{opacity:1;transform:none}
+.case__note{margin-top:10px;text-align:center;font-size:13.5px;color:var(--ink-soft)}
+.case__note b{color:var(--ink)}
+
+/* --- number gluing --- */
+.num__stage{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:11px;min-height:3em;
+  transition:gap .85s cubic-bezier(.35,1,.3,1);
+}
+.num__stage.glued{gap:0}
+.num__stage span{
+  font-size:clamp(15px,4.2vw,21px);font-weight:500;color:#5A616B;
+  padding:4px 1px;border-bottom:2px solid transparent;
+  transition:border-color .45s .7s,color .45s .7s;
+}
+.num__stage.glued span{border-bottom-color:var(--gold);color:var(--ink)}
+.num__out{
+  text-align:center;margin-top:12px;font-size:13.5px;color:var(--ink-soft);
+  opacity:0;transform:translateY(5px);transition:opacity .45s .95s,transform .45s .95s;
+}
+.num__out.on{opacity:1;transform:none}
+.num__out b{color:var(--ink)}
+
+/* --- hyphen magnet --- */
+.hyph__stage{
+  display:flex;align-items:center;justify-content:center;gap:0;min-height:3.2em;
+  font-size:clamp(17px,4.7vw,24px);color:var(--ink);
+}
+.hyph__stage .p1{transform:translateX(-30px);transition:transform .65s cubic-bezier(.3,1.45,.4,1)}
+.hyph__stage .p2{transform:translateX(30px);transition:transform .65s cubic-bezier(.3,1.45,.4,1)}
+.hyph__stage.snap .p1,.hyph__stage.snap .p2{transform:none}
+.hyph__stage .dash{
+  color:var(--gold-deep);font-weight:500;
+  opacity:0;transform:translateY(-1.3em) scale(.35);
+  transition:opacity .3s,transform .55s cubic-bezier(.3,1.8,.5,1);
+}
+.hyph__stage.snap .dash{opacity:1;transform:none}
+.hyph__note{text-align:center;margin-top:8px;font-size:13.5px;color:var(--ink-soft)}
+
+/* --- ordinal toggle --- */
+.ord{display:flex;align-items:center;justify-content:center;gap:12px;min-height:3.4em;flex-wrap:wrap}
+.ord__box{
+  min-width:118px;text-align:center;padding:13px 14px;border-radius:12px;
+  border:1px solid var(--line);background:#fff;font-size:18px;color:var(--ink-faint);font-weight:500;
+  transition:background .4s,border-color .4s,color .4s,transform .4s cubic-bezier(.3,1.4,.5,1);
+}
+.ord__box.on{background:var(--gold-soft);border-color:var(--gold);color:#8A7233;transform:scale(1.05)}
+.ord__eq{color:var(--ink-faint);font-size:17px}
+
+/* --- loanword flip cards --- */
+.loan__grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.flipc{perspective:900px;height:92px;padding:0;background:none;border-radius:12px}
+.flipc__in{
+  position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .68s cubic-bezier(.3,1,.3,1);
+}
+.flipc.on .flipc__in{transform:rotateY(180deg)}
+.flipc__f,.flipc__b{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:12px;border:1px solid var(--line);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  font-size:15px;padding:6px;text-align:center;
+}
+.flipc__f{color:var(--ink-faint)}
+.flipc__f s{color:#C9917C;font-size:16px}
+.flipc__b{
+  transform:rotateY(180deg);background:var(--gold-soft);
+  border-color:var(--gold);color:#8A7233;font-weight:500;font-size:16px;
+}
+.flipc__b small{font-weight:400;font-size:11px;color:#A9865A;letter-spacing:.1em;text-transform:uppercase}
+.flipc__hint{font-size:10px;color:var(--ink-faint);letter-spacing:.12em;text-transform:uppercase}
+@media (min-width:640px){.loan__grid{grid-template-columns:repeat(4,1fr)}}
+
 /* ============ QUIZ ============ */
 .quiz{
   background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);
@@ -996,11 +1126,12 @@ a:focus-visible,button:focus-visible{
             <p>Спрашиваю преподавателя, как это понять на слух.</p>
             <p>Она говорит, никак.</p>
           </div>
-          <div class="box">
-            <h4>Три дифтонга</h4>
-            <p><b>[ай]</b> → <span class="de">ei</span> (das Eis), <span class="de">ai</span> (der Mai), <span class="de">ey/ay</span> в именах собственных (Bayern)</p>
-            <p><b>[ау]</b> → <span class="de">au</span> (die Haut)</p>
-            <p><b>[ой]</b> → <span class="de">eu</span> (das Feuer), <span class="de">äu</span> (träumen)</p>
+
+          <div class="demo">
+            <p class="demo__t">Слышу один звук — пишу по-разному</p>
+            <div class="demo__row" id="sndChips"></div>
+            <div class="snd__out" id="sndOut"></div>
+            <p class="snd__note" id="sndNote"></p>
           </div>
           <div class="box">
             <h4>Долгие гласные</h4>
@@ -1008,12 +1139,6 @@ a:focus-visible,button:focus-visible{
             <p>Долгий — удвоение: <span class="de">der Saal</span> [aː], или гласная + h: <span class="de">die Kuh</span> [uː].</p>
             <p>В глаголах на <span class="de">-ieren, -ifizieren, -isieren</span> долгий [iː] — всегда <b>ie</b>: reduzieren, korrelieren.</p>
             <p>И у сильных глаголов при спряжении: <span class="de">sehen → sie sieht</span>, <span class="de">lesen → er liest</span>.</p>
-          </div>
-          <div class="ex">
-            <button type="button"><span class="word">der Mai</span><span class="tap">перевод</span><span class="tr">май</span></button>
-            <button type="button"><span class="word">das Feuer</span><span class="tap">перевод</span><span class="tr">огонь</span></button>
-            <button type="button"><span class="word">träumen</span><span class="tap">перевод</span><span class="tr">мечтать</span></button>
-            <button type="button"><span class="word">die Kuh</span><span class="tap">перевод</span><span class="tr">корова</span></button>
           </div>
           <div class="tags"><span class="tag">правила нет</span><span class="tag tag--g">спасает насмотренность</span></div>
         </div></div></div>
@@ -1061,6 +1186,13 @@ a:focus-visible,button:focus-visible{
             <p>Говорю, а стало?</p>
             <p>Она говорит, а стало существительное.</p>
           </div>
+
+          <div class="demo">
+            <p class="demo__t">Поставь слово впереди — буква вырастет</p>
+            <div class="demo__row" id="caseChips"></div>
+            <div class="case__line" id="caseLine"></div>
+            <p class="case__note" id="caseNote"></p>
+          </div>
           <div class="box">
             <h4>Как поймать на слух</h4>
             <p>Если перед словом стоит <span class="de">etwas, alles, viel, nur, nichts</span> и на конце слышится <b>-es</b> — почти наверняка большая буква.</p>
@@ -1070,11 +1202,6 @@ a:focus-visible,button:focus-visible{
             <h4>Устойчивые пары — тоже с большой</h4>
             <p><span class="de">im Großen und Ganzen</span> — в целом</p>
             <p><span class="de">Jung und Alt</span> · <span class="de">Groß und Klein</span> · <span class="de">Klug und Dumm</span></p>
-          </div>
-          <div class="ex">
-            <button type="button"><span class="word">alles Gute</span><span class="tap">перевод</span><span class="tr">всего хорошего</span></button>
-            <button type="button"><span class="word">nichts Neues</span><span class="tap">перевод</span><span class="tr">ничего нового</span></button>
-            <button type="button"><span class="word">etwas Schönes</span><span class="tap">перевод</span><span class="tr">нечто прекрасное</span></button>
           </div>
         </div></div></div>
       </article>
@@ -1094,6 +1221,13 @@ a:focus-visible,button:focus-visible{
             <p><span class="de">tausendvierhundertzweiunddreißig</span>.</p>
             <p>Говорю, а пробелы?</p>
             <p>Он говорит, зачем.</p>
+          </div>
+
+          <div class="demo">
+            <p class="demo__t">Смотри, как части склеиваются</p>
+            <div class="demo__row" id="numChips"></div>
+            <div class="num__stage" id="numStage"></div>
+            <p class="num__out" id="numOut"></p>
           </div>
           <div class="box">
             <h4>Правило</h4>
@@ -1118,6 +1252,12 @@ a:focus-visible,button:focus-visible{
             <p>Это порядковое числительное.</p>
             <p>Я узнал об этом на третьем месяце.</p>
           </div>
+
+          <div class="demo">
+            <p class="demo__t">Две записи одного и того же</p>
+            <div class="demo__row" id="ordChips"></div>
+            <div class="ord" id="ordStage"></div>
+          </div>
           <div class="box">
             <h4>Два варианта записи</h4>
             <p>Цифрой с точкой: <span class="de">3. Oktober</span></p>
@@ -1140,11 +1280,12 @@ a:focus-visible,button:focus-visible{
             <p>Число прилипло к прилагательному — ставь дефис.</p>
             <p>Всё. Правило закончилось.</p>
           </div>
-          <div class="box">
-            <h4>Примеры</h4>
-            <p><span class="de">12-jähriges Mädchen</span> — двенадцатилетняя девочка</p>
-            <p><span class="de">100-prozentige Variante</span> — стопроцентный вариант</p>
-            <p><span class="de">8-Kilogramm-Fisch</span> — восьмикилограммовая рыба</p>
+
+          <div class="demo">
+            <p class="demo__t">Дефис притягивает число к прилагательному</p>
+            <div class="demo__row" id="hyphChips"></div>
+            <div class="hyph__stage" id="hyphStage"></div>
+            <p class="hyph__note" id="hyphNote"></p>
           </div>
         </div></div></div>
       </article>
@@ -1163,15 +1304,14 @@ a:focus-visible,button:focus-visible{
             <p>Немецкий забрал эти слова у других языков и не стал их переодевать.</p>
             <p>Тут не думают. Тут открывают словарь.</p>
           </div>
-          <div class="box">
-            <h4>Классика</h4>
-            <p><span class="de">der Clown</span> · <span class="de">die Paparazzi</span> · <span class="de">die Jeans</span> · <span class="de">die Philosophie</span></p>
-            <p>Услышал незнакомое слово — не спеши записывать «по правилам». Проверь. Это дешевле, чем переучивать.</p>
+
+          <div class="demo">
+            <p class="demo__t">Переверни карточку — увидишь настоящее написание</p>
+            <div class="loan__grid" id="loanGrid"></div>
           </div>
-          <div class="ex">
-            <button type="button"><span class="word">der Clown</span><span class="tap">перевод</span><span class="tr">клоун</span></button>
-            <button type="button"><span class="word">die Jeans</span><span class="tap">перевод</span><span class="tr">джинсы</span></button>
-            <button type="button"><span class="word">die Philosophie</span><span class="tap">перевод</span><span class="tr">философия</span></button>
+          <div class="box">
+            <h4>Что с этим делать</h4>
+            <p>Услышал незнакомое слово — не спеши записывать «по правилам». Проверь. Это дешевле, чем переучивать.</p>
           </div>
         </div></div></div>
       </article>
@@ -2235,6 +2375,218 @@ a:focus-visible,button:focus-visible{
       vids.forEach(function(v){ v.src = v.getAttribute('data-src'); });
     }
   }
+
+  /* ---------- RULE DEMOS ---------- */
+  (function(){
+    var WAVE = '<span class="wave"><i></i><i></i><i></i><i></i></span>';
+
+    function plural(n){
+      var t = n % 100, o = n % 10;
+      if (t > 10 && t < 20) return 'букв';
+      if (o === 1) return 'буква';
+      if (o >= 2 && o <= 4) return 'буквы';
+      return 'букв';
+    }
+
+    function chips(host, items, onPick, startIdx){
+      if (!host) return null;
+      var els = items.map(function(label, i){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'dchip';
+        b.innerHTML = label;
+        b.addEventListener('click', function(){ pick(i); });
+        host.appendChild(b);
+        return b;
+      });
+      function pick(i){
+        els.forEach(function(el, j){ el.classList.toggle('on', j === i); });
+        onPick(i);
+      }
+      if (typeof startIdx === 'number') pick(startIdx);
+      return pick;
+    }
+
+    /* --- 1. звук → буквы --- */
+    var SND = [
+      { s:'[ай]', note:'<b>Три записи одного звука.</b> Услышал [ай] — угадать нельзя, можно только знать слово в лицо.',
+        rows:[['ei','das Eis','лёд, мороженое'],['ai','der Mai','май'],['ey / ay','Bayern','только в именах собственных']] },
+      { s:'[ау]', note:'<b>Здесь повезло.</b> У [ау] запись одна — <b>au</b>. Единственный дифтонг, где ошибиться негде.',
+        rows:[['au','die Haut','кожа'],['au','das Auge','глаз'],['au','laufen','бежать']] },
+      { s:'[ой]', note:'<b>Две записи.</b> Чаще <b>eu</b>. А <b>äu</b> появляется там, где рядом есть родственное слово с <b>au</b>: der Traum → träumen.',
+        rows:[['eu','das Feuer','огонь'],['äu','träumen','мечтать'],['eu','heute','сегодня']] },
+      { s:'долгий [и:]', note:'<b>Долгий [и:] — это ie.</b> Всегда в глаголах на -ieren и при спряжении сильных глаголов. Краткий [и] — одна буква i: der Tipp.',
+        rows:[['ie','reduzieren','сокращать'],['ie','er liest','он читает'],['ie','sie sieht','она видит']] },
+      { s:'долгий [а:]', note:'<b>Долгота показывается на письме.</b> Удвоением гласной или буквой h после неё.',
+        rows:[['aa','der Saal','зал'],['ah','die Bahn','дорога, поезд'],['a','der Vater','отец — тоже долгий, без подсказки']] }
+    ];
+    (function(){
+      var host = document.getElementById('sndChips');
+      var out  = document.getElementById('sndOut');
+      var note = document.getElementById('sndNote');
+      if (!host) return;
+      var t = [];
+      chips(host, SND.map(function(x){ return x.s + ' ' + WAVE; }), function(i){
+        t.forEach(clearTimeout); t = [];
+        var c = SND[i];
+        out.innerHTML = '';
+        note.innerHTML = c.note;
+        c.rows.forEach(function(r, k){
+          var row = document.createElement('div');
+          row.className = 'snd__row';
+          row.innerHTML = '<span class="tile">' + r[0] + '</span><em><b>' + r[1] + '</b>' + r[2] + '</em>';
+          out.appendChild(row);
+          t.push(setTimeout(function(){ row.classList.add('on'); }, 90 + k*130));
+        });
+      }, 0);
+    })();
+
+    /* --- 3. прилагательное → существительное --- */
+    var CASE = [
+      { pre:'alles',  adj:'gut',    word:'Gute',    tr:'всего хорошего' },
+      { pre:'etwas',  adj:'schön',  word:'Schönes', tr:'нечто прекрасное' },
+      { pre:'nichts', adj:'neu',    word:'Neues',   tr:'ничего нового' },
+      { pre:'nur',    adj:'lustig', word:'Lustiges',tr:'только весёлое' }
+    ];
+    (function(){
+      var host = document.getElementById('caseChips');
+      var line = document.getElementById('caseLine');
+      var note = document.getElementById('caseNote');
+      if (!host) return;
+      var t = [];
+      chips(host, CASE.map(function(c){ return c.pre + ' + ' + c.adj; }), function(i){
+        t.forEach(clearTimeout); t = [];
+        var c = CASE[i];
+        var head = c.word.charAt(0);
+        var mid  = c.word.slice(1, c.adj.length);
+        var tail = c.word.slice(c.adj.length);
+        line.innerHTML = '<span class="pre">' + c.pre + '</span>' +
+                         '<span><span class="cap">' + head + '</span>' + mid +
+                         '<span class="suf">' + tail + '</span></span>';
+        note.innerHTML = '';
+        t.push(setTimeout(function(){ line.querySelector('.cap').classList.add('pop'); }, 120));
+        t.push(setTimeout(function(){ line.querySelector('.suf').classList.add('on'); }, 380));
+        t.push(setTimeout(function(){
+          note.innerHTML = '«' + c.tr + '». Было прилагательное <b>' + c.adj +
+                           '</b> — стало существительное <b>' + c.word + '</b>. Отсюда заглавная и окончание <b>-' + tail + '</b>.';
+        }, 700));
+      }, 0);
+    })();
+
+    /* --- 4. склейка числа --- */
+    var NUM = [
+      { n:'23',   parts:['drei','und','zwanzig'] },
+      { n:'121',  parts:['hundert','ein','und','zwanzig'] },
+      { n:'1432', parts:['tausend','vier','hundert','zwei','und','dreißig'] },
+      { n:'8 000 000', parts:['acht','Millionen'], split:true }
+    ];
+    (function(){
+      var host  = document.getElementById('numChips');
+      var stage = document.getElementById('numStage');
+      var out   = document.getElementById('numOut');
+      if (!host) return;
+      var t = [];
+      chips(host, NUM.map(function(x){ return x.n; }), function(i){
+        t.forEach(clearTimeout); t = [];
+        var c = NUM[i];
+        stage.classList.remove('glued');
+        out.classList.remove('on');
+        stage.innerHTML = c.parts.map(function(p){ return '<span>' + p + '</span>'; }).join('');
+        if (c.split){
+          t.push(setTimeout(function(){
+            out.innerHTML = 'Исключение: <b>Millionen</b> и <b>Milliarden</b> — существительные. Пишутся <b>отдельно и с большой буквы</b>.';
+            out.classList.add('on');
+          }, 300));
+          return;
+        }
+        var glued = c.parts.join('');
+        t.push(setTimeout(function(){ stage.classList.add('glued'); }, 420));
+        t.push(setTimeout(function(){
+          out.innerHTML = '<b>' + glued.length + ' ' + plural(glued.length) + '</b> — и всё это одно слово. Пробелов в немецком числе не бывает.';
+          out.classList.add('on');
+        }, 500));
+      }, 2);
+    })();
+
+    /* --- 5. порядковые: цифра ↔ пропись --- */
+    var ORD = [
+      { chip:'3 октября',      a:'3. Oktober',   b:'dritter Oktober' },
+      { chip:'второй язык',    a:'2. Fremdsprache', b:'zweite Fremdsprache' },
+      { chip:'Екатерина II',   a:'Katharina II.', b:'Katharina die Zweite' }
+    ];
+    (function(){
+      var host  = document.getElementById('ordChips');
+      var stage = document.getElementById('ordStage');
+      if (!host) return;
+      var t = [];
+      chips(host, ORD.map(function(x){ return x.chip; }), function(i){
+        t.forEach(clearTimeout); t = [];
+        var c = ORD[i];
+        stage.innerHTML = '<span class="ord__box" data-k="0">' + c.a + '</span>' +
+                          '<span class="ord__eq">=</span>' +
+                          '<span class="ord__box" data-k="1">' + c.b + '</span>';
+        var boxes = stage.querySelectorAll('.ord__box');
+        var k = 0;
+        function beat(){
+          boxes[0].classList.toggle('on', k === 0);
+          boxes[1].classList.toggle('on', k === 1);
+          k = 1 - k;
+          t.push(setTimeout(beat, 1400));
+        }
+        t.push(setTimeout(beat, 150));
+      }, 0);
+    })();
+
+    /* --- 6. дефис-магнит --- */
+    var HYPH = [
+      { chip:'12 лет',  p1:'12', p2:'jähriges Mädchen',  note:'двенадцатилетняя девочка' },
+      { chip:'100 %',   p1:'100', p2:'prozentige Variante', note:'стопроцентный вариант' },
+      { chip:'8 кг',    p1:'8', p2:'Kilogramm-Fisch',     note:'восьмикилограммовая рыба' }
+    ];
+    (function(){
+      var host  = document.getElementById('hyphChips');
+      var stage = document.getElementById('hyphStage');
+      var note  = document.getElementById('hyphNote');
+      if (!host) return;
+      var t = [];
+      chips(host, HYPH.map(function(x){ return x.chip; }), function(i){
+        t.forEach(clearTimeout); t = [];
+        var c = HYPH[i];
+        stage.classList.remove('snap');
+        note.textContent = '';
+        stage.innerHTML = '<span class="p1">' + c.p1 + '</span>' +
+                          '<span class="dash">-</span>' +
+                          '<span class="p2">' + c.p2 + '</span>';
+        t.push(setTimeout(function(){ stage.classList.add('snap'); }, 380));
+        t.push(setTimeout(function(){ note.textContent = c.note; }, 900));
+      }, 0);
+    })();
+
+    /* --- 7. заимствования: карточки --- */
+    var LOAN = [
+      { wrong:'Klaun',      right:'Clown',       from:'английский' },
+      { wrong:'Dschins',    right:'Jeans',       from:'английский' },
+      { wrong:'Paparazi',   right:'Paparazzi',   from:'итальянский' },
+      { wrong:'Filosofie',  right:'Philosophie', from:'греческий' }
+    ];
+    (function(){
+      var grid = document.getElementById('loanGrid');
+      if (!grid) return;
+      LOAN.forEach(function(c){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'flipc';
+        b.setAttribute('aria-label', 'Показать правильное написание слова ' + c.right);
+        b.innerHTML =
+          '<span class="flipc__in">' +
+            '<span class="flipc__f"><s>' + c.wrong + '</s><span class="flipc__hint">как слышится</span></span>' +
+            '<span class="flipc__b">' + c.right + '<small>' + c.from + '</small></span>' +
+          '</span>';
+        b.addEventListener('click', function(){ b.classList.toggle('on'); });
+        grid.appendChild(b);
+      });
+    })();
+  })();
 
   /* ---------- COUNTDOWN ---------- */
   var end = Date.now() + (10*24*3600 + 8*3600 + 5*60 + 9) * 1000;
